@@ -1,4 +1,4 @@
-package core
+package scheme
 
 import "regexp"
 
@@ -18,19 +18,25 @@ const (
 	UNKNOWN
 )
 
+// SEPARATOR defines where the scheme definition 
+// ends in a formated string
+const SEPARATOR = ":"
+
+// ListNames string naming mapping for each SchemeType
+var ListNames = []string{
+	"ftp",
+	"gist",
+	"http",
+	"https",
+	"ipfs",
+	"lot",
+}
+
 func (st SchemeType) String() string {
-	listNames := []string{
-		"ftp",
-		"gist",
-		"http",
-		"https",
-		"ipfs",
-		"lot",
-	}
-	if st < 0 || st >= SchemeType(len(listNames)) {
+	if st < 0 || st >= SchemeType(len(ListNames)) {
 		return "unknown"
 	}
-	return listNames[st]
+	return ListNames[st]
 }
 
 // GetSchemeTypeFrom try to identify the scheme of the locator

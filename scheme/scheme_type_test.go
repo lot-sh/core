@@ -1,4 +1,4 @@
-package core
+package scheme
 
 import "testing"
 
@@ -32,3 +32,4 @@ func TestGetSchemeTypeFromShouldWorkAsExpected(t *testing.T) {
 		t.Errorf("The SchemeType of %s should be FTP, instead got %s", locatorUnknown, GetSchemeTypeFrom(locatorUnknown))
 	}
 }
+
