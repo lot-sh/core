@@ -33,3 +33,16 @@ func TestGetSchemeTypeFromShouldWorkAsExpected(t *testing.T) {
 	}
 }
 
+
+func TestCastingString(t *testing.T) {
+	actual := FTP.String()
+	expected := "ftp"
+	if actual != "ftp" {
+		t.Errorf("The SchemeType %s should be casted as string with the value of %s, instead got %s", FTP, expected, actual)
+	}
+	actual = HTTP.String()
+	expected = "http"
+	if actual != "http" {
+		t.Errorf("The SchemeType %s should be casted as string with the value of %s, instead got %s", HTTP, expected, actual)
+	}
+}
