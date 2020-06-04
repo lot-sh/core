@@ -22,6 +22,22 @@ func TestGistLocatorRegexpShouldBeWellFormed(t *testing.T) {
 	}
 }
 
+func TestGistLocatorRegexpShouldFailsToMatchBadFormedGistLocators(t *testing.T) {
+	re := regexp.MustCompile(GistLocatorRegexp)
+	locatorWithoutScheme := "Kelvur/multiply.py"
+	if re.MatchString(locatorWithoutScheme) {
+		t.Errorf("GistLocatorRegexp match a locator without scheme: %s", locatorWithoutScheme)
+	}
+	locatorWithoutUsername := "gist://multiply.py"
+	if re.MatchString(locatorWithoutUsername) {
+		t.Errorf("GistLocatorRegexp match a locator without username: %s", locatorWithoutUsername)
+	}
+	locatorWithoutResource := "gist://Kelvur/"
+	if re.MatchString(locatorWithoutResource) {
+		t.Errorf("GistLocatorRegexp match a locator without resource: %s", locatorWithoutResource)
+	}
+}
+
 func TestObtainUsernameAndResourceFromGistLocatorShouldWorkAsExpected(t *testing.T) {
 	gistLocator := "gist://Kelvur/multiply.py"
 	username := "Kelvur"
