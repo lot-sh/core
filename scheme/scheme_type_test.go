@@ -33,7 +33,6 @@ func TestGetSchemeTypeFromShouldWorkAsExpected(t *testing.T) {
 	}
 }
 
-
 func TestCastingString(t *testing.T) {
 	actual := FTP.String()
 	expected := "ftp"

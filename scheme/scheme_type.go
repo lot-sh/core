@@ -18,7 +18,7 @@ const (
 	UNKNOWN
 )
 
-// SEPARATOR defines where the scheme definition 
+// SEPARATOR defines where the scheme definition
 // ends in a formated string
 const SEPARATOR = ":"
 
