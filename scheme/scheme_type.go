@@ -2,14 +2,14 @@ package scheme
 
 import "regexp"
 
-// SchemeType type
-type SchemeType int
+// Type type
+type Type int
 
 // Scheme types supported by this program. Also
 // UNKNOWN is defined to be used when the scheme is unknown
 // https://tools.ietf.org/html/rfc3986#section-3
 const (
-	FTP SchemeType = iota
+	FTP Type = iota
 	GIST
 	HTTP
 	HTTPS
@@ -22,7 +22,7 @@ const (
 // ends in a formated string
 const SEPARATOR = ":"
 
-// ListNames string naming mapping for each SchemeType
+// ListNames string naming mapping for each Type
 var ListNames = []string{
 	"ftp",
 	"gist",
@@ -32,17 +32,17 @@ var ListNames = []string{
 	"lot",
 }
 
-func (st SchemeType) String() string {
-	if st < 0 || st >= SchemeType(len(ListNames)) {
+func (st Type) String() string {
+	if st < 0 || st >= Type(len(ListNames)) {
 		return "unknown"
 	}
 	return ListNames[st]
 }
 
-// GetSchemeTypeFrom try to identify the scheme of the locator
-// and returns the SchemeType which correspond, can return the
-// SchemeType.UNKNOWN in case it cannot identify the scheme
-func GetSchemeTypeFrom(locator string) SchemeType {
+// GetTypeFrom try to identify the scheme of the locator
+// and returns the Type which correspond, can return the
+// Type.UNKNOWN in case it cannot identify the scheme
+func GetTypeFrom(locator string) Type {
 	re := regexp.MustCompile(`^[a-z]*`)
 	switch string(re.Find([]byte(locator))) {
 	case "ftp":

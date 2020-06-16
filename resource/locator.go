@@ -11,7 +11,7 @@ import (
 // For more details visit the RFC
 // https://github.com/lot-sh/docs/blob/master/rfcs/002-resource-locator.md
 type Locator struct {
-	scheme scheme.SchemeType
+	scheme scheme.Type
 	path   string
 }
 
@@ -20,7 +20,7 @@ type Locator struct {
 func NewLocator(strloc string) (*Locator, error) {
 	res := Locator{}
 	parts := strings.Split(strloc, scheme.SEPARATOR)
-	res.scheme = scheme.GetSchemeTypeFrom(parts[0])
+	res.scheme = scheme.GetTypeFrom(parts[0])
 
 	if res.scheme == scheme.UNKNOWN {
 		return nil, fmt.Errorf("Failure schema detection when parsing %s", strloc)

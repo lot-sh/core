@@ -10,7 +10,7 @@ import (
 // this application, which is pieces of code and they origin
 type Resource struct {
 	Locator string
-	Scheme  scheme.SchemeType
+	Scheme  scheme.Type
 }
 
 func (r *Resource) String() string {
