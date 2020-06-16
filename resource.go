@@ -3,13 +3,14 @@ package core
 import (
 	"fmt"
 	"io"
+	"github.com/lot-sh/core/scheme"
 )
 
 // Resource struct is the data of the principal resource of
 // this application, which is pieces of code and they origin
 type Resource struct {
 	Locator string
-	Scheme  SchemeType
+	Scheme  scheme.Type
 }
 
 func (r *Resource) String() string {
