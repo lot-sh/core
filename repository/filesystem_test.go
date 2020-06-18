@@ -1,23 +1,24 @@
 package repository
 
 import (
-	"io/ioutil"
-	"os"
-	"strings"
-	"testing"
+	"bufio"
 	"bytes"
 	"fmt"
-	"bufio"
+	"io/ioutil"
+	"os"
 	"path"
+	"strings"
+	"testing"
+
 	"github.com/lot-sh/core/types"
 )
 
 var (
-	repo types.Repository
-	directory = path.Join(os.TempDir(), "lotsh/lib")
+	repo        types.Repository
+	directory   = path.Join(os.TempDir(), "lotsh/lib")
 	filecontent = "This is a test"
-	hash = "zb2rhk5zU8kdMPiPKgdxjhXTxs7KBxaXFqDhK2sBr5xQckX5f"
-	err error
+	hash        = "zb2rhk5zU8kdMPiPKgdxjhXTxs7KBxaXFqDhK2sBr5xQckX5f"
+	err         error
 )
 
 func TestErrorWhenInitialize(t *testing.T) {
@@ -42,7 +43,7 @@ func TestInitializeWithoutErrors(t *testing.T) {
 
 func TestRepositoryAdd(t *testing.T) {
 	buf := bytes.NewBufferString(filecontent)
-	actual, err := repo.Add(bufio.NewReader(buf));
+	actual, err := repo.Add(bufio.NewReader(buf))
 	expected := hash
 	if err != nil {
 		t.Fatalf("Test failed in create resource; %s\n", err)
@@ -54,7 +55,7 @@ func TestRepositoryAdd(t *testing.T) {
 }
 
 func TestRepositoryGet(t *testing.T) {
-	reader, err := repo.Get(hash);
+	reader, err := repo.Get(hash)
 	actual, err := ioutil.ReadAll(reader)
 	expected := filecontent
 	if err != nil {
